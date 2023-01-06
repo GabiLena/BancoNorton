@@ -1,0 +1,17 @@
+C:\Users\vinic\source\p\ApiBancoNorton\BancoNorton.DAL\bin\Debug\net6.0\BancoNorton.DAL.deps.json
+C:\Users\vinic\source\p\ApiBancoNorton\BancoNorton.DAL\bin\Debug\net6.0\BancoNorton.DAL.runtimeconfig.json
+C:\Users\vinic\source\p\ApiBancoNorton\BancoNorton.DAL\bin\Debug\net6.0\BancoNorton.DAL.dll
+C:\Users\vinic\source\p\ApiBancoNorton\BancoNorton.DAL\bin\Debug\net6.0\BancoNorton.DAL.pdb
+C:\Users\vinic\source\p\ApiBancoNorton\BancoNorton.DAL\bin\Debug\net6.0\BancoNorton.Domain.dll
+C:\Users\vinic\source\p\ApiBancoNorton\BancoNorton.DAL\bin\Debug\net6.0\BancoNorton.Domain.pdb
+C:\Users\vinic\source\p\ApiBancoNorton\BancoNorton.DAL\obj\Debug\net6.0\BancoNorton.DAL.csproj.AssemblyReference.cache
+C:\Users\vinic\source\p\ApiBancoNorton\BancoNorton.DAL\obj\Debug\net6.0\BancoNorton.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vinic\source\p\ApiBancoNorton\BancoNorton.DAL\obj\Debug\net6.0\BancoNorton.DAL.AssemblyInfoInputs.cache
+C:\Users\vinic\source\p\ApiBancoNorton\BancoNorton.DAL\obj\Debug\net6.0\BancoNorton.DAL.AssemblyInfo.cs
+C:\Users\vinic\source\p\ApiBancoNorton\BancoNorton.DAL\obj\Debug\net6.0\BancoNorton.DAL.csproj.CoreCompileInputs.cache
+C:\Users\vinic\source\p\ApiBancoNorton\BancoNorton.DAL\obj\Debug\net6.0\BancoNorton.DAL.csproj.CopyComplete
+C:\Users\vinic\source\p\ApiBancoNorton\BancoNorton.DAL\obj\Debug\net6.0\BancoNorton.DAL.dll
+C:\Users\vinic\source\p\ApiBancoNorton\BancoNorton.DAL\obj\Debug\net6.0\refint\BancoNorton.DAL.dll
+C:\Users\vinic\source\p\ApiBancoNorton\BancoNorton.DAL\obj\Debug\net6.0\BancoNorton.DAL.pdb
+C:\Users\vinic\source\p\ApiBancoNorton\BancoNorton.DAL\obj\Debug\net6.0\BancoNorton.DAL.genruntimeconfig.cache
+C:\Users\vinic\source\p\ApiBancoNorton\BancoNorton.DAL\obj\Debug\net6.0\ref\BancoNorton.DAL.dll

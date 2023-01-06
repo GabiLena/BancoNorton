@@ -1,0 +1,12 @@
+C:\Users\vinic\source\p\ApiBancoNorton\BancoNorton.Domain\bin\Debug\net6.0\BancoNorton.Domain.deps.json
+C:\Users\vinic\source\p\ApiBancoNorton\BancoNorton.Domain\bin\Debug\net6.0\BancoNorton.Domain.dll
+C:\Users\vinic\source\p\ApiBancoNorton\BancoNorton.Domain\bin\Debug\net6.0\BancoNorton.Domain.pdb
+C:\Users\vinic\source\p\ApiBancoNorton\BancoNorton.Domain\obj\Debug\net6.0\BancoNorton.Domain.csproj.AssemblyReference.cache
+C:\Users\vinic\source\p\ApiBancoNorton\BancoNorton.Domain\obj\Debug\net6.0\BancoNorton.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vinic\source\p\ApiBancoNorton\BancoNorton.Domain\obj\Debug\net6.0\BancoNorton.Domain.AssemblyInfoInputs.cache
+C:\Users\vinic\source\p\ApiBancoNorton\BancoNorton.Domain\obj\Debug\net6.0\BancoNorton.Domain.AssemblyInfo.cs
+C:\Users\vinic\source\p\ApiBancoNorton\BancoNorton.Domain\obj\Debug\net6.0\BancoNorton.Domain.csproj.CoreCompileInputs.cache
+C:\Users\vinic\source\p\ApiBancoNorton\BancoNorton.Domain\obj\Debug\net6.0\BancoNorton.Domain.dll
+C:\Users\vinic\source\p\ApiBancoNorton\BancoNorton.Domain\obj\Debug\net6.0\refint\BancoNorton.Domain.dll
+C:\Users\vinic\source\p\ApiBancoNorton\BancoNorton.Domain\obj\Debug\net6.0\BancoNorton.Domain.pdb
+C:\Users\vinic\source\p\ApiBancoNorton\BancoNorton.Domain\obj\Debug\net6.0\ref\BancoNorton.Domain.dll
