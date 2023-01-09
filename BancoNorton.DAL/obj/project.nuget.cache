@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "p6FdyiuOkf3AnHFllK6wt+//sk/6XKtWs3B0nDQcioCOztSNhrLs+6NG2jan823l9HEfoSpIj6B0dK6yzDgxmA==",
+  "dgSpecHash": "c2F/xPaz4JNbhYh/FzV7pHZVpsZH2qgPk4p4XwVvUTxRzk4PMpjemfMfcuczDcyPJxLZMSAiBCCTu+hy2JbZCQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\vinic\\source\\p\\ApiBancoNorton\\BancoNorton.DAL\\BancoNorton.DAL.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\vinic\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\vinic\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
-    "C:\\Users\\vinic\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\vinic\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\vinic\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
     "C:\\Users\\vinic\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.1.1\\microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",
     "C:\\Users\\vinic\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.12\\microsoft.entityframeworkcore.6.0.12.nupkg.sha512",

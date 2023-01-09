@@ -8,11 +8,11 @@ public class Cliente
 
     }
 
-    public Cliente(string cpf, string nome, int contaId)
+    public Cliente(string cpf, string nome)
     {
         Cpf = cpf;
         Nome = nome;
-        ContaId = contaId;
+        //ContaId = contaId;
     }
 
     [Required]
