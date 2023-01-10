@@ -1,13 +1,8 @@
 ﻿using AutoMapper;
-using BancoNorton.DAL.DAO;
+using BancoNorton.Api.DTO;
 using BancoNorton.Domain.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace BancoNorton.DAL.Profiles
+namespace BancoNorton.Api.Profiles
 {
     public class ClienteProfile : Profile
     {
