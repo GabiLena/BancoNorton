@@ -7,9 +7,11 @@ public class ClienteConfiguration : IEntityTypeConfiguration<Cliente>
 {
     public void Configure(EntityTypeBuilder<Cliente> builder)
     {
+            // relacionamento one to many
         builder
-            .HasOne(c => c.Conta)
+            .HasMany(cliente => cliente.Contas)
             .WithOne(conta => conta.Cliente)
-            .HasForeignKey<Cliente>(c => c.ContaId);
+            .HasForeignKey(conta => conta.ClienteId);
+            //.OnDelete(DeleteBehavior.Cascade); definição de ação quando houver deleção de dados;
     }
 }

@@ -16,8 +16,6 @@ public class AppDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new ClienteConfiguration());
-        modelBuilder.ApplyConfiguration(new ContaConfiguration());
-
         base.OnModelCreating(modelBuilder);
     }
 }
