@@ -4,6 +4,7 @@ using BancoNorton.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BancoNorton.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230111155049_Add_DataCriacao_Na_Tabela_Conta")]
+    partial class Add_DataCriacao_Na_Tabela_Conta
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,14 +44,6 @@ namespace BancoNorton.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Clientes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Cpf = "012.345.678-90",
-                            Nome = "Fulano Detal"
-                        });
                 });
 
             modelBuilder.Entity("BancoNorton.Domain.Model.Conta", b =>
@@ -66,9 +60,8 @@ namespace BancoNorton.DAL.Migrations
                     b.Property<DateTimeOffset>("DataCriacao")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<string>("NumeroConta")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("NumeroConta")
+                        .HasColumnType("int");
 
                     b.Property<int>("Saldo")
                         .HasColumnType("int");
@@ -78,16 +71,6 @@ namespace BancoNorton.DAL.Migrations
                     b.HasIndex("ClienteId");
 
                     b.ToTable("Contas");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ClienteId = 1,
-                            DataCriacao = new DateTimeOffset(new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, -3, 0, 0, 0)),
-                            NumeroConta = "001",
-                            Saldo = 2147483647
-                        });
                 });
 
             modelBuilder.Entity("BancoNorton.Domain.Model.Conta", b =>
