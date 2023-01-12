@@ -26,5 +26,5 @@ public class Cliente
     [Required(ErrorMessage = "O nome é obrigatório.")]
     [MaxLength(50, ErrorMessage = "O nome não pode exceder 50 caracteres.")]
     public string Nome { get; set; }
-    public List<Conta> Contas { get; set; } = new();
+    public List<ContaJuridica> Contas { get; set; } = new();
 }

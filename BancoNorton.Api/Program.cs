@@ -1,5 +1,7 @@
 using BancoNorton.Api.Service;
+using BancoNorton.Api.Validator;
 using BancoNorton.DAL;
+using BancoNorton.DAL.Repositories;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,12 +19,15 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IContaService, ContaService>();
 builder.Services.AddScoped<IClienteService, ClienteService>();
+builder.Services.AddScoped<IContaRepository, ContaJuridicaRepository>();
+builder.Services.AddTransient<ContaJuridicaDTOValidator>();
+
 
 builder.Services.AddFluentValidation();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 
-var app = builder.Build();
+var app = builder.Build();//deu erro aqui
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

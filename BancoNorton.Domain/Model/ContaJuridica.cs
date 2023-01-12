@@ -1,14 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 namespace BancoNorton.Domain.Model;
-public class Conta
+public class ContaJuridica
 {
-    public Conta()
+    public ContaJuridica()
     {
 
     }
 
-    public Conta(string numeroConta, int saldo, int clienteId)
+    public ContaJuridica(string numeroConta, int saldo, int clienteId)
     {
         NumeroConta = numeroConta;
         Saldo = saldo;

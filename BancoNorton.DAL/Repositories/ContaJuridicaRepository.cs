@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace BancoNorton.DAL.Repositories
 {
-    public class ContaRepository : Repository<Conta>, IContaRepository
+    public class ContaJuridicaRepository : Repository<ContaJuridica>, IContaRepository
     {
         private readonly AppDbContext _context;
 
-        public ContaRepository(AppDbContext context) : base(context)
+        public ContaJuridicaRepository(AppDbContext context) : base(context)
         {
             _context = context;
         }
@@ -23,7 +23,7 @@ namespace BancoNorton.DAL.Repositories
             return conta.NumeroConta;
         }
     }
-    public interface IContaRepository : IRepository<Conta>
+    public interface IContaRepository : IRepository<ContaJuridica>
     {
         Task<string> ObterNumeroUltimaContaAsync();
     }

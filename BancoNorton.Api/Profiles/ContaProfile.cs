@@ -8,7 +8,7 @@ namespace BancoNorton.Api.Profiles
     {
         public ContaProfile()
         {
-            CreateMap<ContaJuridicaDTO, Conta>();
+            CreateMap<ContaJuridicaDTO, ContaJuridica>();
         }
     }
 }

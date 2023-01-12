@@ -12,22 +12,24 @@ namespace BancoNorton.Api.Service
         private readonly IContaRepository _repository;
         private readonly IMapper _mapper;
         private readonly ContaJuridicaDTOValidator _validator;
-        public ContaService(IMapper mapper, IContaRepository repository)
+        public ContaService(IMapper mapper, IContaRepository repository, ContaJuridicaDTOValidator validator)
         {
             _mapper = mapper;
             _repository = repository;
+            _validator = validator;
         }
 
         public async Task<bool> AdicionarContaJuridica(ContaJuridicaDTO contaDTO)
         {
-            int numeroContaInt = await ObterUltimoNumeroContaAsync();//obtem ultimo numero de conta criado
-
-            var novaConta = _mapper.Map<Conta>(contaDTO);// mapeia pra dto
-            novaConta.NumeroConta = numeroContaInt + 1.ToString("000000000");//cria novo numero
-
             var result = _validator.Validate(contaDTO);//valida CNPJ
             if (!result.IsValid)
                 throw new Exception(string.Join(" | ", result.Errors.Select(x => x.ErrorMessage)));
+            
+            int numeroContaInt = await ObterUltimoNumeroContaAsync();//obtem ultimo numero de conta criado
+
+            var novaConta = _mapper.Map<ContaJuridica>(contaDTO);// mapeia pra dto
+            novaConta.NumeroConta = (numeroContaInt + 1).ToString("000000000");//cria novo numero
+            novaConta.DataCriacao = new DateTimeOffset(DateTime.Now);
 
             return await _repository.AddAsync(novaConta);
         }
@@ -42,6 +44,6 @@ namespace BancoNorton.Api.Service
 
     public interface IContaService
     {
-
+        Task<bool> AdicionarContaJuridica(ContaJuridicaDTO contaDTO);
     }
 }

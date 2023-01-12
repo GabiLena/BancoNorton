@@ -10,7 +10,7 @@ public class AppDbContext : DbContext
 
     }
 
-    public DbSet<Conta> Contas { get; set; }
+    public DbSet<ContaJuridica> Contas { get; set; }
     public DbSet<Cliente> Clientes { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
