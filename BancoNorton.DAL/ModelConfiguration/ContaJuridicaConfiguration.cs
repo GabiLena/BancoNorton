@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace BancoNorton.DAL.ModelConfiguration;
-public class ContaConfiguration : IEntityTypeConfiguration<ContaJuridica>
+public class ContaJuridicaConfiguration : IEntityTypeConfiguration<ContaJuridica>
 {
     public void Configure(EntityTypeBuilder<ContaJuridica> builder)
     {

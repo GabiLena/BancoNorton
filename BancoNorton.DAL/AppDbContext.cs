@@ -10,13 +10,14 @@ public class AppDbContext : DbContext
 
     }
 
-    public DbSet<ContaJuridica> Contas { get; set; }
+    public DbSet<ContaJuridica> ContasJuridicas { get; set; }
+    public DbSet<ContaFisica> ContasFisicas { get; set; }
     public DbSet<Cliente> Clientes { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new ClienteConfiguration());
-        modelBuilder.ApplyConfiguration(new ContaConfiguration());
+        modelBuilder.ApplyConfiguration(new ContaJuridicaConfiguration());
 
         base.OnModelCreating(modelBuilder);
     }

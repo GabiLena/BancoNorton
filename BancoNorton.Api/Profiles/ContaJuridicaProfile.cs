@@ -4,9 +4,9 @@ using BancoNorton.Domain.Model;
 
 namespace BancoNorton.Api.Profiles
 {
-    public class ContaProfile : Profile
+    public class ContaJuridicaProfile : Profile
     {
-        public ContaProfile()
+        public ContaJuridicaProfile()
         {
             CreateMap<ContaJuridicaDTO, ContaJuridica>();
         }

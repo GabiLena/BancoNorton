@@ -19,8 +19,10 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IContaService, ContaService>();
 builder.Services.AddScoped<IClienteService, ClienteService>();
-builder.Services.AddScoped<IContaRepository, ContaJuridicaRepository>();
+builder.Services.AddScoped<IContaJuridicaRepository, ContaJuridicaRepository>();
+builder.Services.AddScoped<IContaFisicaRepository, ContaFisicaRepository>();
 builder.Services.AddTransient<ContaJuridicaDTOValidator>();
+builder.Services.AddTransient<ContaFisicaDTOValidator>();
 
 
 builder.Services.AddFluentValidation();

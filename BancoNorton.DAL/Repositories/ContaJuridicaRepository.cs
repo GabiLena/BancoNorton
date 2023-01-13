@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BancoNorton.DAL.Repositories
 {
-    public class ContaJuridicaRepository : Repository<ContaJuridica>, IContaRepository
+    public class ContaJuridicaRepository : Repository<ContaJuridica>, IContaJuridicaRepository
     {
         private readonly AppDbContext _context;
 
@@ -19,11 +19,11 @@ namespace BancoNorton.DAL.Repositories
 
         public async Task<string> ObterNumeroUltimaContaAsync()
         {
-            var conta = await _context.Contas.OrderByDescending(c => c.DataCriacao).FirstOrDefaultAsync();
+            var conta = await _context.ContasJuridicas.OrderByDescending(c => c.DataCriacao).FirstOrDefaultAsync();
             return conta.NumeroConta;
         }
     }
-    public interface IContaRepository : IRepository<ContaJuridica>
+    public interface IContaJuridicaRepository : IRepository<ContaJuridica>
     {
         Task<string> ObterNumeroUltimaContaAsync();
     }

@@ -4,6 +4,7 @@ using BancoNorton.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BancoNorton.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230113184259_Configura_Conta_Fisica")]
+    partial class Configura_Conta_Fisica
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,12 +51,6 @@ namespace BancoNorton.DAL.Migrations
                             Id = 1,
                             Cpf = "012.345.678-90",
                             Nome = "Fulano Detal"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Cpf = "456.890.158-81",
-                            Nome = "Gabriela Lena"
                         });
                 });
 

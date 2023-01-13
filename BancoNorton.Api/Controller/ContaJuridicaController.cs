@@ -8,11 +8,11 @@ namespace BancoNorton.Api.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ContaController : ControllerBase
+    public class ContaJuridicaController : ControllerBase
     {
         private readonly IContaService _service;
 
-        public ContaController(IContaService service)
+        public ContaJuridicaController(IContaService service)
         {
             _service = service;
         }

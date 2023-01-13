@@ -7,7 +7,7 @@ namespace BancoNorton.Api.Validator
     {
         public ContaFisicaDTOValidator()
         {
-            RuleFor(dto => dto.Cpf).IsValidCNPJ();
+            RuleFor(dto => dto.Cpf).IsValidCPF();
         }
     }
 }
