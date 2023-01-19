@@ -1,15 +1,61 @@
-﻿using BancoNorton.DAL;
+﻿using AutoMapper;
+using BancoNorton.Api.DTO;
+using BancoNorton.Api.Validator;
+using BancoNorton.DAL;
+using BancoNorton.DAL.Repositories;
+using BancoNorton.Domain.Model;
 
 namespace BancoNorton.Api.Service
 {
     public class ClienteService : IClienteService
     {
-        private AppDbContext _context;
-        
+        private readonly IMapper _mapper;
+        private readonly IClienteRepository _repository;
+        private readonly ClienteDTOValidator _validator;
 
+        public ClienteService(IMapper mapper, IClienteRepository repository, ClienteDTOValidator validator)
+        {
+            _mapper = mapper;
+            _repository = repository;
+            _validator = validator;
+        }
+
+        public async Task<bool> AdicionaCliente(ClienteDTO clienteDTO)
+        {
+            var result = _validator.Validate(clienteDTO);
+            if (!result.IsValid)
+                throw new Exception(string.Join("|", result.Errors.Select(x => x.ErrorMessage)));
+
+            var novoCliente = _mapper.Map<Cliente>(clienteDTO);
+            return await _repository.AddAsync(novoCliente);
+        }
+        
+        public async Task<List<ClienteDTO>> RecuperaClientes(int skip, int take)
+        {
+            var clientes = await _repository.GetAllAsync(skip, take);
+            return clientes.Select(c => _mapper.Map<ClienteDTO>(c)).ToList();//para cada cliente, mapeia para dto
+        }
+
+        public async Task<bool> AtualizaDadosDeCliente(ClienteDTO clienteDTO)
+        {
+            var cliente = _mapper.Map<Cliente>(clienteDTO);
+            var clienteAtualizado = await _repository.UpdateAsync(cliente);
+            return clienteAtualizado;
+        }
+
+        public async Task<ClienteDTO> RecuperaClientePeloIdAsync(int id)
+        {
+            var clienteAchado = await _repository.FindByIdAsync(id);
+            var clienteDto = _mapper.Map<ClienteDTO>(clienteAchado);
+            return clienteDto;
+        }
     }
 
     public interface IClienteService
     {
+        Task<bool> AdicionaCliente(ClienteDTO clienteDTO);
+        Task<bool> AtualizaDadosDeCliente(ClienteDTO clienteDTO);
+        Task<ClienteDTO> RecuperaClientePeloIdAsync(int id);
+        Task<List<ClienteDTO>> RecuperaClientes(int skip, int take);
     }
 }

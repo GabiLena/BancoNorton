@@ -9,6 +9,7 @@ namespace BancoNorton.Api.Profiles
         public ClienteProfile()
         {
             CreateMap<ClienteDTO, Cliente>();
+            CreateMap<Cliente, ClienteDTO>();
         }
     }
 }
