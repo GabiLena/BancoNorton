@@ -1,46 +1,45 @@
 ﻿namespace BancoNorton.DAL.Repositories;
-
 public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
 {
-    private readonly AppDbContext _contexto;
+    private readonly AppDbContext _context;
 
     protected Repository(AppDbContext context)
     {
-        _contexto = context;
+        _context = context;
     }
 
-    public virtual async Task<TEntity> FindByIdAsync(int id)
+    public virtual async Task<TEntity?> FindByIdAsync(int id)
     {
-        var objeto = await _contexto.Set<TEntity>().FindAsync(id);
-        return objeto!;
+        var entity = await _context.Set<TEntity>().FindAsync(id);
+        return entity;
     }
 
     public virtual async Task<bool> AddAsync(TEntity entity)
     {
-        await _contexto.Set<TEntity>().AddAsync(entity);
-        return await _contexto.SaveChangesAsync();
+        await _context.Set<TEntity>().AddAsync(entity);
+        return await _context.SaveChangesAsync();
     }
 
     public virtual Task<bool> UpdateAsync(TEntity entity)
     {
-        _contexto.Set<TEntity>().Update(entity);
-        return _contexto.SaveChangesAsync();
+        _context.Set<TEntity>().Update(entity);
+        return _context.SaveChangesAsync();
     }
 
     public virtual async Task<bool> DeleteAsync(int id)
     {
-        var dbSet = _contexto.Set<TEntity>();
+        var dbSet = _context.Set<TEntity>();
         var entity = await dbSet.FindAsync(id);
 
         if (entity is not null)
             dbSet.Remove(entity);
 
-        return await _contexto.SaveChangesAsync();
+        return await _context.SaveChangesAsync();
     }
 }
 public interface IRepository<TEntity>
 {
-    Task<TEntity> FindByIdAsync(int id);
+    Task<TEntity?> FindByIdAsync(int id);
     Task<bool> AddAsync(TEntity entity);
     Task<bool> UpdateAsync(TEntity entity);
     Task<bool> DeleteAsync(int id);

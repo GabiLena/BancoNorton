@@ -18,6 +18,7 @@ public class AppDbContext : DbContext
     {
         modelBuilder.ApplyConfiguration(new ClienteConfiguration());
         modelBuilder.ApplyConfiguration(new ContaJuridicaConfiguration());
+        modelBuilder.ApplyConfiguration(new ContaFisicaConfiguration());
 
         base.OnModelCreating(modelBuilder);
     }

@@ -28,23 +28,7 @@ namespace BancoNorton.Api.Controller
             return StatusCode(304);
         }
 
-        // GET api/<ContaController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+        //método que adiciona conta juridica em cliente
 
-        // PUT api/<ContaController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<ContaController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }

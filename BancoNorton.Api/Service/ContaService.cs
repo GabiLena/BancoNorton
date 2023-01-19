@@ -66,11 +66,26 @@ namespace BancoNorton.Api.Service
             var numeroContaInt = int.Parse(numeroUltimaConta);
             return numeroContaInt;
         }
+
+        public async Task<ContaFisica?> RecuperaContaFisicaPorId(int id)
+        {
+            var conta = await _fisicaRepository.FindByIdAsync(id);
+            return conta;
+        }
+
+        public async Task<ContaJuridica?> RecuperaContaJuridicaPorId(int id)
+        {
+            var conta = await _juridicaRepository.FindByIdAsync(id);
+            return conta;
+        }
+
     }
 
     public interface IContaService
     {
         Task<bool> AdicionarContaJuridica(ContaJuridicaDTO contaDTO);
         Task<bool> AdicionarContaFisica(ContaFisicaDTO contaDTO);
+        Task<ContaFisica?> RecuperaContaFisicaPorId(int id);
+        Task<ContaJuridica?> RecuperaContaJuridicaPorId(int id);
     }
 }
