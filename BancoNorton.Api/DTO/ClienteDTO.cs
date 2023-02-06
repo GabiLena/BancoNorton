@@ -20,6 +20,6 @@ public class ClienteDTO
     [Range(18, 90, ErrorMessage = "A Idade deve ser entre 18 à 90 anos.")]
     public int Idade { get; set; }
 
-    public ContaJuridicaDTO? ContaJuridica { get; set; }// para criar um cliente, uma conta sera criada juntamente
-    public ContaFisicaDTO? ContaFisica { get; set; }// para criar um cliente, uma conta sera criada juntamente
+    public List<ContaJuridicaDTO> ContaJuridica { get; set; } = new();// new para ser uma lista vazia
+    public List<ContaFisicaDTO> ContaFisica { get; set; } = new();// para criar um cliente, uma conta sera criada juntamente
 }

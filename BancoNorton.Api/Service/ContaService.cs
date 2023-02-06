@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
 using BancoNorton.Api.DTO;
 using BancoNorton.Api.Validator;
-using BancoNorton.DAL;
-using BancoNorton.DAL.Repositories;
 using BancoNorton.Domain.Model;
+using BancoNorton.Domain.Repository;
 
 namespace BancoNorton.Api.Service
 {
@@ -53,6 +52,16 @@ namespace BancoNorton.Api.Service
             return await _fisicaRepository.AddAsync(novaConta);
         }
 
+        public async Task<string> GeraNumeroContaFisicaAsync(ContaFisicaDTO contaDTO)
+        {
+            int numeroContaInt = await ObterUltimoNumeroContaFisicaAsync();//obtem ultimo numero de conta criado
+
+            var novaConta = _mapper.Map<ContaFisica>(contaDTO);// mapeia pra dto
+            novaConta.NumeroConta = (numeroContaInt + 1).ToString("000000000");//cria novo numero
+            novaConta.DataCriacao = new DateTimeOffset(DateTime.Now);
+            return novaConta.NumeroConta;
+        }
+
         private async Task<int> ObterUltimoNumeroContaFisicaAsync()
         {
             var numeroUltimaConta = await _fisicaRepository.ObterNumeroUltimaContaAsync();
@@ -78,7 +87,6 @@ namespace BancoNorton.Api.Service
             var conta = await _juridicaRepository.FindByIdAsync(id);
             return conta;
         }
-
     }
 
     public interface IContaService
@@ -87,5 +95,6 @@ namespace BancoNorton.Api.Service
         Task<bool> AdicionarContaFisica(ContaFisicaDTO contaDTO);
         Task<ContaFisica?> RecuperaContaFisicaPorId(int id);
         Task<ContaJuridica?> RecuperaContaJuridicaPorId(int id);
+        Task<string> GeraNumeroContaFisicaAsync(ContaFisicaDTO contaDTO);
     }
 }

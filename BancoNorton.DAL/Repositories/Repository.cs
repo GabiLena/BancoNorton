@@ -1,4 +1,6 @@
-﻿namespace BancoNorton.DAL.Repositories;
+﻿using BancoNorton.Domain.Repository;
+
+namespace BancoNorton.DAL.Repositories;
 public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
 {
     private readonly AppDbContext _context;
@@ -36,11 +38,4 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
 
         return await _context.SaveChangesAsync();
     }
-}
-public interface IRepository<TEntity>
-{
-    Task<TEntity?> FindByIdAsync(int id);
-    Task<bool> AddAsync(TEntity entity);
-    Task<bool> UpdateAsync(TEntity entity);
-    Task<bool> DeleteAsync(int id);
 }

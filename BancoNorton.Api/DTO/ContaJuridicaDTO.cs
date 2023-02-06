@@ -1,5 +1,4 @@
-﻿using BancoNorton.Domain.Model;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace BancoNorton.Api.DTO;
 

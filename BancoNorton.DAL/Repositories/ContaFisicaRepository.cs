@@ -1,4 +1,5 @@
 ﻿using BancoNorton.Domain.Model;
+using BancoNorton.Domain.Repository;
 using Microsoft.EntityFrameworkCore;
 
 namespace BancoNorton.DAL.Repositories
@@ -18,10 +19,6 @@ namespace BancoNorton.DAL.Repositories
             var conta = await _context.ContasFisicas.OrderByDescending(c => c.DataCriacao).FirstOrDefaultAsync();
             return conta.NumeroConta;
         }
-    }
-    public interface IContaFisicaRepository : IRepository<ContaFisica>
-    {
-        Task<string> ObterNumeroUltimaContaAsync();
     }
 }
 

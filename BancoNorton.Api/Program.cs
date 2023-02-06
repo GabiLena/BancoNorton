@@ -2,6 +2,7 @@ using BancoNorton.Api.Service;
 using BancoNorton.Api.Validator;
 using BancoNorton.DAL;
 using BancoNorton.DAL.Repositories;
+using BancoNorton.Domain.Repository;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 

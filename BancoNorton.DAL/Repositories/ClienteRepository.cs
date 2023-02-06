@@ -1,10 +1,6 @@
 ﻿using BancoNorton.Domain.Model;
+using BancoNorton.Domain.Repository;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BancoNorton.DAL.Repositories
 {
@@ -24,11 +20,13 @@ namespace BancoNorton.DAL.Repositories
                 .Include(cliente => cliente.ContasFisicas)
                 .Skip(skip).Take(10).ToListAsync();
         }
-      
-    }
 
-    public interface IClienteRepository : IRepository<Cliente>
-    {
-        Task<List<Cliente>> GetAllAsync(int skip, int take);
+        public async Task<bool> PossuiContaFisicaAsync(int idCliente, string numeroConta)
+        {
+            var cliente = await _context.Clientes 
+                .Include(_cliente => _cliente.ContasFisicas)
+                .FirstOrDefaultAsync(c => c.Id == idCliente && c.ContasFisicas.Any(cf => cf.NumeroConta == numeroConta));
+            return cliente != null;
+        }
     }
 }

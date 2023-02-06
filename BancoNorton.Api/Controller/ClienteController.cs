@@ -1,72 +1,91 @@
 ﻿using BancoNorton.Api.DTO;
 using BancoNorton.Api.Service;
-using BancoNorton.DAL.Repositories;
+using BancoNorton.Domain.Model;
+using BancoNorton.Domain.Repository;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BancoNorton.Api.Controller
+namespace BancoNorton.Api.Controller;
+
+[Route("api/[controller]")]
+[ApiController]
+public class ClienteController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ClienteController : ControllerBase
+    private readonly IClienteService _service;
+    private readonly IClienteRepository _repository;
+    private readonly IContaService _serviceConta;
+
+    public ClienteController(IClienteService service, IClienteRepository repository, IContaService contaService)
     {
-        private readonly IClienteService _service;
-        private readonly IClienteRepository _repository;
+        _service = service;
+        _repository = repository;
+        _serviceConta = contaService;
+    }
 
+    [HttpPost]
+    public async Task<IActionResult> AdicionaClienteAsync([FromBody] ClienteDTO clienteDTO)
+    {
+        var adicionado = await _service.AdicionaCliente(clienteDTO);
+        if (adicionado)
+            return Ok("Cliente foi adicionado");
+        return StatusCode(304);
+    }
 
-        public ClienteController(IClienteService service, IClienteRepository repository)
-        {
-            _service = service;
-            _repository = repository;
-        }
+    [HttpGet]
+    public async Task<ActionResult<List<ClienteDTO>>> RecuperaClientesAsync([FromQuery] int skip = 0, [FromQuery] int take = 10)
+    {
+        var clientes = await _service.RecuperaClientes(skip, take);// no service tem contas, mas aqui fica null
 
-        [HttpPost]
-        public async Task<IActionResult> AdicionaClienteAsync([FromBody] ClienteDTO clienteDTO)
-        {
-            var adicionado = await _service.AdicionaCliente(clienteDTO);
-            if (adicionado)
-                return Ok("Cliente foi adicionado");
-            return StatusCode(304);
-        }
+        if (clientes is null)
+            return StatusCode(500, "Lista é nula");
 
-        [HttpGet]
-        public async Task<ActionResult<List<ClienteDTO>>> RecuperaClientesAsync([FromQuery] int skip = 0, [FromQuery] int take = 10)
-        {
-            var clientes = await _service.RecuperaClientes(skip, take);
+        if (!clientes.Any())
+            return NotFound();
 
-            if (clientes is null)
-                return StatusCode(500, "Lista é nula");
+        return Ok(clientes);
+    }
 
-            if (!clientes.Any())
-                return NotFound();
+    [HttpGet("{id}")]
+    public async Task<ActionResult<ClienteDTO>> RecuperaClientesPeloIdAsync(int id)
+    {
+        var clienteAchado = await _service.RecuperaClientePeloIdAsync(id);
+        if (clienteAchado is null)
+            return StatusCode(500, "Cliente não existe");
 
-            return Ok(clientes);
-        }
+        return Ok(clienteAchado);
+    }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<ClienteDTO>> RecuperaClientesPeloIdAsync(int id)
-        {
-            var clienteAchado = await _service.RecuperaClientePeloIdAsync(id);
-            if (clienteAchado is null)
-                return StatusCode(500, "Cliente não existe");
+    [HttpPatch]
+    public async Task<IActionResult> AtualizaCliente([FromBody] ClienteDTO clienteDTO)
+    {
+        var clienteFoiAtualizado = await _service.AtualizaDadosDeCliente(clienteDTO);
+        if (!clienteFoiAtualizado)
+            return NotFound();
 
-            return Ok(clienteAchado);
-        }
+        return NoContent();
+    }
 
-        [HttpPatch]
-        public async Task<IActionResult> AtualizaCliente([FromBody] ClienteDTO clienteDTO)
-        {
-            var clienteFoiAtualizado = await _service.AtualizaDadosDeCliente(clienteDTO);
-            if (!clienteFoiAtualizado)
-                return NotFound();
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeletaCliente(int id)
+    {
+        var clienteDeletado = await _repository.DeleteAsync(id);
+        return Ok("Cliente foi deletado com sucesso.");
+    }
 
-            return NoContent();
-        }
+    [HttpPost("{id}")]
+    public async Task<IActionResult> AdicionaContaFisica([FromBody] ContaFisicaDTO contaDto, int id)
+    {
+        var cliente = await _repository.FindByIdAsync(id);
+        if (cliente is not Cliente clienteValido)
+            return NotFound();
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletaCliente(int id)
-        {
-            var clienteDeletado = await _repository.DeleteAsync(id);
-            return Ok("Cliente foi deletado com sucesso.");
-        }
+        var numeroConta = await _serviceConta.GeraNumeroContaFisicaAsync(contaDto);
+        var jaPossuiConta = await _repository.PossuiContaFisicaAsync(id, numeroConta);
+        if (jaPossuiConta)
+            return StatusCode(304, $"Cliente já possui conta com número: '{contaDto.NumeroConta}'.");
+
+        clienteValido.ContasFisicas.Add(new(numeroConta, contaDto.Saldo, clienteValido.Id));
+        var foiAtualizado = await _repository.UpdateAsync(clienteValido);
+
+        return foiAtualizado ? Ok() : StatusCode(304, $"Ocorreu um erro ao tentar adicionar a conta física no cliente com id: '{cliente.Id}'.");
     }
 }
