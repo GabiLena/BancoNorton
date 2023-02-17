@@ -23,4 +23,8 @@
 		<ProjectReference Include="..\BancoNorton.Domain\BancoNorton.Domain.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Migrations\" />
+	</ItemGroup>
+
 </Project>

@@ -9,6 +9,7 @@ namespace BancoNorton.Api.Profiles
         public ContaFisicaProfile()
         {
             CreateMap<ContaFisicaDTO, ContaFisica>();
+            CreateMap<ContaFisica, ContaFisicaDTO>();
         }
     }
 }
