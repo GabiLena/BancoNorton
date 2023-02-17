@@ -71,21 +71,4 @@ public class ClienteController : ControllerBase
         return Ok("Cliente foi deletado com sucesso.");
     }
 
-    [HttpPost("{id}")]
-    public async Task<IActionResult> AdicionaContaFisica([FromBody] ContaFisicaDTO contaDto, int id)
-    {
-        var cliente = await _repository.FindByIdAsync(id);
-        if (cliente is not Cliente clienteValido)
-            return NotFound();
-
-        var numeroConta = await _serviceConta.GeraNumeroContaFisicaAsync(contaDto);
-        var jaPossuiConta = await _repository.PossuiContaFisicaAsync(id, numeroConta);
-        if (jaPossuiConta)
-            return StatusCode(304, $"Cliente já possui conta com número: '{contaDto.NumeroConta}'.");
-
-        clienteValido.ContasFisicas.Add(new(numeroConta, contaDto.Saldo, clienteValido.Id));
-        var foiAtualizado = await _repository.UpdateAsync(clienteValido);
-
-        return foiAtualizado ? Ok() : StatusCode(304, $"Ocorreu um erro ao tentar adicionar a conta física no cliente com id: '{cliente.Id}'.");
-    }
 }

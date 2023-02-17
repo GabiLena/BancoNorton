@@ -43,14 +43,14 @@ public class ClienteService : IClienteService
         return clienteAtualizado;
     }
 
-    public async Task<ClienteDTO?> RecuperaClientePeloIdAsync(int id)
+    public async Task<Cliente?> RecuperaClientePeloIdAsync(int id)
     {
         var clienteAchado = await _repository.FindByIdAsync(id);
         if (clienteAchado is null)
             return null;
 
-        var clienteDto = _mapper.Map<ClienteDTO>(clienteAchado);
-        return clienteDto;
+        //var clienteDto = _mapper.Map<ClienteDTO>(clienteAchado);
+        return clienteAchado;
     }
 }
 
@@ -58,6 +58,6 @@ public interface IClienteService
 {
     Task<bool> AdicionaCliente(ClienteDTO clienteDTO);
     Task<bool> AtualizaDadosDeCliente(ClienteDTO clienteDTO);
-    Task<ClienteDTO?> RecuperaClientePeloIdAsync(int id);
+    Task<Cliente?> RecuperaClientePeloIdAsync(int id);
     Task<List<ClienteDTO>> RecuperaClientes(int skip, int take);
 }

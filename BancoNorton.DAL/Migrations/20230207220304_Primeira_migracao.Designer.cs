@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BancoNorton.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230113190556_Criando_Novo_Cliente")]
-    partial class Criando_Novo_Cliente
+    [Migration("20230207220304_Primeira_migracao")]
+    partial class Primeira_migracao
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -36,6 +36,9 @@ namespace BancoNorton.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Idade")
+                        .HasColumnType("int");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -44,20 +47,6 @@ namespace BancoNorton.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Clientes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Cpf = "012.345.678-90",
-                            Nome = "Fulano Detal"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Cpf = "456.890.158-81",
-                            Nome = "Gabriela Lena"
-                        });
                 });
 
             modelBuilder.Entity("BancoNorton.Domain.Model.ContaFisica", b =>
@@ -114,16 +103,6 @@ namespace BancoNorton.DAL.Migrations
                     b.HasIndex("ClienteId");
 
                     b.ToTable("ContasJuridicas");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ClienteId = 1,
-                            DataCriacao = new DateTimeOffset(new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, -3, 0, 0, 0)),
-                            NumeroConta = "001",
-                            Saldo = 2147483647
-                        });
                 });
 
             modelBuilder.Entity("BancoNorton.Domain.Model.ContaFisica", b =>

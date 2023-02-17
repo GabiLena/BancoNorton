@@ -16,7 +16,6 @@ namespace BancoNorton.DAL.Repositories
         public async Task<List<Cliente>> GetAllAsync(int skip, int take)
         {
             return await _context.Clientes
-                .Include(cliente => cliente.ContasJuridicas)
                 .Include(cliente => cliente.ContasFisicas)
                 .Skip(skip).Take(10).ToListAsync();
         }

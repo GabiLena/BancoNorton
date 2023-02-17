@@ -17,7 +17,10 @@ namespace BancoNorton.DAL.Repositories
         public async Task<string> ObterNumeroUltimaContaAsync()
         {
             var conta = await _context.ContasFisicas.OrderByDescending(c => c.DataCriacao).FirstOrDefaultAsync();
-            return conta.NumeroConta;
+            if (conta != null)
+                return conta.NumeroConta;
+            else
+                return "1458";
         }
     }
 }
